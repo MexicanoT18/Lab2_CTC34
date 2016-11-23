@@ -24,12 +24,13 @@ public class State {
     public boolean simulate(char [] array, int i){
         char direction, curchar, toRead;
         int nexti, nextstate;
+        Transition transition;
         
         //keep current char
         curchar = array[i];
         
         for(int j=0; j<_transitions.size(); j++){
-            Transition transition = _transitions.get(j);
+            transition = _transitions.get(j);
             
             //check if is valid transition
             toRead = transition.getToRead();
@@ -57,11 +58,14 @@ public class State {
             array[i] = transition.getToWrite();
             
             //keep simulation
-            if (_machine.simulateOnState(array, nextstate, nexti))
+            if (_machine.simulateOnState(array, nextstate, nexti)){
+                _machine.pushToStack(transition.toString());
                 return true;
+            }
+            
+            //reset current char
+            array[i] = curchar;
         }
-        
-        array[i] = curchar;
         
         return false;
     }
