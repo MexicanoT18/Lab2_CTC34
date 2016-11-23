@@ -88,6 +88,7 @@ public class Main {
         //q8 transitions
         machine.addTransition(8, 8, 'X', 'B', 'R');
         machine.addTransition(8, 9, '0', '0', 'R');
+        machine.addTransition(8, 13, 'B', 'B', 'L');
         
         //q9 transitions
         machine.addTransition(9, 9, 'X', 'X', 'R');
@@ -122,7 +123,7 @@ public class Main {
         
         char [] array = new char[MAXN];
         
-        print2array(array, "baabc1bacba");
+        print2array(array, "aa1a");
         
         if(escovador.simulate(array)){
             System.out.println("Cadeia aceita");
